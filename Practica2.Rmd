@@ -1,0 +1,49 @@
+---
+title: "Práctica 2 - Análisis Exploratorio de Datos"
+author: "David Ferrer Oltra"
+date: "`r format(Sys.Date(), '%d/%m/%Y')`"
+output: pdf_document
+---
+
+# 1. Instalar los paquetes necesarios
+
+Este bloque instala los paquetes si todavía no están instalados.
+
+```{r}
+paquetes <- c(
+  "pacman",
+  "tidyverse",
+  "knitr",
+  "ggplot2",
+  "datasets",
+  "RColorBrewer",
+  "latex2exp"
+)
+
+instalados <- rownames(installed.packages())
+faltantes <- setdiff(paquetes, instalados)
+
+if (length(faltantes) > 0) {
+  install.packages(faltantes, repos = "https://cloud.r-project.org")
+}
+
+cat("Paquetes comprobados:", paste(paquetes, collapse = ", "), "\n")
+```
+
+# 2. Cargar las librerías
+
+```{r}
+library(pacman)
+library(tidyverse)
+library(knitr)
+library(ggplot2)
+library(datasets)
+library(RColorBrewer)
+library(latex2exp)
+```
+
+## Con pacman:
+
+```{r}
+pacman::p_load(pacman, tidyverse, knitr, ggplot2, datasets, RColorBrewer, latex2exp)
+```
