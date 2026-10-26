@@ -84,3 +84,98 @@ grafico3
 ggsave("./results/Ejercicio1.pdf", plot = grafico3)
 ```
 
+#Ejercicio 2
+
+Utilizando ggplot haz un gráfico de dispersión en el que representes las variables `Temp9am` y `Pressure9am` en los ejes X e Y, respectivamente.
+
+```{r}
+ggplot(ds,  aes(x = Temp9am, y = Pressure9am))+geom_point()
+```
+
+Modifica el gráfico anterior para incluir información categórica proporcionada por la variable `RainToday` con la forma del punto.
+
+```{r}
+ggplot(ds,  aes(x = Temp9am, y = Pressure9am, shape = RainToday))+geom_point()
+
+```
+
+Modifica el gráfico anterior para incluir información categórica proporcionada por la variable `RainToday` con el color del punto. ¿Con qué representación (color o forma) se observa mejor la información que introduce la variable `RainToday`?
+
+```{r}
+ggplot(ds,  aes(x = Temp9am, y = Pressure9am, shape = RainToday, colour = RainToday))+geom_point()
+
+#Se puede apreciar claramente que el color de la variable RainToday es mucho más informativa por sí sola que en base a la forma, que al ser todas negras, no es posible discernirlas fácilmente
+```
+
+Añade títulos explicativos al gráfico anterior (debe aparecer un título, subtítulo, leyendas e información de las variables representadas en los ejes).
+
+```{r}
+ejer2 <- ggplot(ds,  aes(x = Temp9am, y = Pressure9am, shape = RainToday, colour = RainToday))+geom_point()+labs(title = "Temperatura y presion con color y forma RainToday",
+       subtitle = "Relación entre el Temp9am y Pressure9am",
+       x = "Temperatura 9AM",
+       y = "Presión 9AM",
+       caption = "Datos obtenidos desde la UV.")
+ejer2
+
+```
+
+Almacena en formato PDF el gráfico resultante en un fichero denominado `Ejercicio2.pdf`.
+
+```{r}
+ggsave("./results/Ejercicio2.pdf", plot = ejer2)
+
+```
+
+#Ejercicio 3
+
+Carga el fichero `iris.tidy.RData` utilizando lo aprendido en la práctica 1.
+
+```{r}
+
+```
+
+Utiliza la función `str()` para ver qué variables contiene el dataset.
+
+```{r}
+
+```
+
+Crea un objeto ggplot denominado `iris.grafico1` en el que esté definido el conjunto de datos `iris.tidy` alojado en el fichero `iris.tidy.RData` y un aesthetics en el que en el eje X esté definida la variable `Species` y en el eje Y esté definida la variable `Value`.
+
+```{r}
+
+```
+
+Añade una capa que defina el objeto geométrico necesario para construir un gráfico de dispersión de las variables `Species` y `Value`.
+
+```{r}
+
+```
+
+Modifica el aesthetics de `iris.grafico1` para visualizar la variable categórica `Part` y almacénalo en `iris.grafico2`. A partir del objeto `iris.grafico2`, representa un gráfico de dispersión en el que se muestren los puntos dados por las variables `Species` y `Value`, y el color del punto se corresponda con el valor de la variable `Part`.
+
+```{r}
+
+```
+
+Incluye información de la variable `Measure` haciendo dos gráficos de dispersión (dispuestos en filas) con `facet_grid()`, como en el apartado de introducción, para los dos valores que toma la variable `Measure`. Prueba a cambiar la disposición de los gráficos para que sea en columnas. ¿Qué disposición, en filas o en columnas, permite comparar mejor los valores de las dos variables?
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+Cambia ahora la capa `geom_point()` del gráfico anterior por la capa `geom_jitter()`. ¿Qué diferencia observas?
+
+```{r}
+
+```
+
+Almacena en formato PDF el gráfico resultante en un fichero denominado `Ejercicio3.pdf`.
+
+```{r}
+
+```
