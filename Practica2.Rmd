@@ -47,3 +47,40 @@ library(latex2exp)
 ```{r}
 pacman::p_load(pacman, tidyverse, knitr, ggplot2, datasets, RColorBrewer, latex2exp)
 ```
+
+#Ejercicio 1
+
+Carga el fichero weatherAUS.RData utilizando lo aprendido en la práctica 1.
+```{r}
+wth <- load("P2/data/weatherAUS.RData")
+str(ds)
+```
+Crea un objeto ggplot denominado grafico1 en el que esté definido el conjunto de datos ds alojado en el fichero weatherAUS.RData y un aesthetics en el que en el eje x
+ esté definida la variable MinTemp y en el eje y
+ esté definida la variable MaxTemp.
+ 
+```{r}
+grafico1 <- ggplot(ds, aes(x = MinTemp, y = MaxTemp))
+```
+ Añade una capa que defina el objeto geométrico necesario para construir un gráfico de dispersión de las variables MinTemp y MaxTemp.
+```{r}
+grafico1 <- grafico1+geom_point()
+grafico1
+```
+Genera ahora el mismo gráfico y almacénalo en grafico2 pero define el aesthetics para visualizar las variables MinTemp y MaxTemp en los ejes de la gráfica y la variable categórica RainTomorrow como el color. A partir del objeto grafico2, representa un gráfico de dispersión en el que se muestren los puntos con el color del punto correspondiente a la variable RainTomorrow.
+
+```{r}
+grafico2 <- ggplot(ds, aes(x = MinTemp, y = MaxTemp, colour= RainTomorrow))+geom_point()
+grafico2
+```
+Añade a grafico2 una capa para incluir un título con ggtitle() y almacénalo en grafico3.
+
+```{r}
+grafico3 <- grafico2+ggtitle(" MaxTemp y MinTemp con respecto a la lluvia del día siguiente")
+grafico3
+```
+
+```{r}
+ggsave("./results/Ejercicio1.pdf", plot = grafico3)
+```
+
