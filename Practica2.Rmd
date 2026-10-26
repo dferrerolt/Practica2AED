@@ -369,5 +369,94 @@ ejer7
 Almacena en formato PDF el gráfico resultante en un fichero denominado `Ejercicio7.pdf`.
 
 ```{r}
+ggsave("./results/Ejercicio7.pdf", plot = ejer7)
 
 ```
+
+
+#Ejercicio 8
+
+Descarga de la URL `http://assets.datacamp.com/blog_assets/chol.txt` el dataset de DataCamp que utilizarás para este ejercicio y cárgalo en un dataframe.
+
+```{r}
+url <- "http://assets.datacamp.com/blog_assets/chol.txt"
+
+chol <- read.table(url, header = TRUE)
+str(chol)
+```
+
+Representa el histograma de la variable `HEIGHT` del dataframe cargado del fichero anterior.
+
+```{r}
+ggplot(data=chol, aes(x=HEIGHT)) + geom_histogram()
+```
+
+Añade título ("Histograma de la variable Altura"), una etiqueta en el eje X ("Altura (cm)") y una etiqueta en el eje Y ("Frecuencia").
+
+```{r}
+ggplot(data=chol, aes(x=HEIGHT)) + geom_histogram()+labs(title = "Histograma de la variable Altura", x = "Altura (cm)", y = "Frecuencia")
+```
+
+Ajusta el rango de representación entre 155 y 195, además fuerza que el histograma tenga 20 bins (usa el parámetro `breaks`).
+
+```{r}
+ggplot(data=chol, aes(x=HEIGHT)) +
+  geom_histogram(breaks=seq(155, 195, by=2))+
+  labs(title = "Histograma de la variable Altura", x = "Altura (cm)", y = "Frecuencia")
+```
+
+Haz que las barras del histograma sean de color azul con un grado de transparencia del 50 % y el contorno de color rojo.
+
+```{r}
+ggplot(data=chol, aes(x=HEIGHT)) +
+  geom_histogram(breaks=seq(155, 195, by=2), 
+                 col="red",
+                 fill="blue",
+                 alpha = .5)+
+  labs(title = "Histograma de la variable Altura", 
+       x = "Altura (cm)", 
+       y = "Frecuencia")
+
+
+```
+
+Añade la curva de distribución estimada de color verde.
+
+```{r}
+ggplot(data=chol, aes(x=HEIGHT)) +
+  geom_histogram(aes(y =after_stat(density)), # la curva en base a la densidad
+                 breaks=seq(155, 195, by=2), 
+                 col="red",
+                 fill="blue",
+                 alpha = .5)+
+    geom_density(col="green") +
+  labs(title = "Histograma de la variable Altura", 
+       x = "Altura (cm)", 
+       y = "Frecuencia")
+```
+
+Representa el mismo histograma del apartado anterior para cada valor de la variable `MORT`, recuerda utilizar la función `facet_grid()`.
+
+```{r}
+
+ejer8 <-ggplot(data=chol, aes(x=HEIGHT)) +
+  geom_histogram(aes(y =after_stat(density)), # la curva en base a la densidad
+                 breaks=seq(155, 195, by=2), 
+                 col="red",
+                 fill="blue",
+                 alpha = .5)+
+  geom_density(col="green") +
+  labs(title = "Histograma de la variable Altura", 
+       x = "Altura (cm)", 
+       y = "Frecuencia")+
+  facet_grid(. ~ MORT) 
+ejer8
+```
+
+Almacena en formato PDF el gráfico resultante en un fichero denominado `Ejercicio8.pdf`.
+
+```{r}
+ggsave("./results/Ejercicio8.pdf", plot = ejer8)
+
+```
+
