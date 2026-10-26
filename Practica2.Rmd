@@ -321,33 +321,49 @@ ejer6 <- ggplot(data = ice.river.df, aes(x = time)) +
     x = "Tiempo",
     y = "Caudal",
     caption = "Datos obtenidos de la UV")
+ejer6
 
 ```
 
 Almacena en formato PDF el gráfico resultante en un fichero denominado `Ejercicio6.pdf`.
 
 ```{r}
+ggsave("./results/Ejercicio6.pdf", plot = ejer6)
 
 ```
 
 #Ejercicio 7
 
+Carga el fichero weatherAUS_distributions.RData.
+
+```{r}
+ej7 <- load("P2/data/weatherAUS_distributions.RData")
+ej7
+```
+
 Crea un gráfico en el que estén los gráficos de violín de la variable `MaxTemp` para cada uno de los años presentes en la variable `Year` del dataset.
 
 ```{r}
-
+ggplot(ds)+geom_violin(aes(x = Year, y = MaxTemp))
 ```
 
 Añade en el mismo gráfico una capa de etiquetas de título (Distribución de temperaturas máximas por año), eje X (Año) y eje Y (Temperatura (ºC)). Colorea el interior de los violines según la variable `Year`.
 
 ```{r}
-
+ggplot(ds)+geom_violin(aes(x = Year, y = MaxTemp, fill=Year))+labs(
+  title = "Distribución de temperaturas máximas por año", 
+  x = "Año", 
+  y = "Temperatura (ºC)")
 ```
 
 En el gráfico anterior elimina la leyenda y coloca los años en el eje X a 45 grados de inclinación. Busca información sobre cómo hacer esto.
 
 ```{r}
-
+ejer7 <- ggplot(ds)+geom_violin(aes(x = Year, y = MaxTemp, fill=Year))+labs(
+  title = "Distribución de temperaturas máximas por año", 
+  x = "Año", 
+  y = "Temperatura (ºC)")+theme(axis.title.x=element_blank(), axis.text.x = element_text(angle = 45, hjust=1))
+ejer7
 ```
 
 Almacena en formato PDF el gráfico resultante en un fichero denominado `Ejercicio7.pdf`.
