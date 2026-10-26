@@ -186,5 +186,62 @@ iris.grafico2
 Almacena en formato PDF el gráfico resultante en un fichero denominado `Ejercicio3.pdf`.
 
 ```{r}
+ggsave("./results/Ejercicio3.pdf", plot = iris.grafico2)
+
+```
+
+#Ejercicio 4
+
+Carga el fichero Ejercicio4_Data.Rdata. Examina las variables que tiene dicho dataset.
+
+```{r}
+ejer4 <- load("P2/data/Ejercicio4_Data.Rdata.")
+ejer4
+```
+
+
+Representa un gráfico de puntos, en el que se muestre la fecha en el eje x y las ventas en el eje y. Queremos que los datos de cada fabricante sean de un color distinto. ¿Es este gráfico válido para evaluar la evolución de las ventas de cada fabricante?
+
+```{r}
+ggplot(data=DatosEjer4, aes(x=Fecha, y=Ventas, group=Fabricante, colour = Fabricante)) +
+  geom_line()+
+  geom_point()
+
+#No, no sería valido para evaluar la evolución de las ventas de cada uno ya que es difícil entender los resultados faltaría unir los puntos para mas claridad
+```
+
+
+Representa un gráfico como el anterior en el que se muestre la línea que une los puntos que antes has representado.
+
+```{r}
+ggplot(data=DatosEjer4, aes(x=Fecha, y=Ventas, group=Fabricante, colour = Fabricante)) +
+  geom_line()+
+  geom_point()
+
+```
+
+
+Modifica el gráfico anterior para que la tendencia de cada fabricante este trazada con un tipo de línea diferente.
+
+```{r}
+ej4 <- ggplot(data=DatosEjer4, aes(x=Fecha, y=Ventas, group=Fabricante, colour = Fabricante, )) +
+  geom_line(aes(linetype=Fabricante))+
+  geom_point()
+ej4
+```
+
+
+Añade el siguiente título al gráfico “Ventas mensuales de diferentes compañías tecnológicas”.
+
+```{r}
+ej4 <- ej4 + ggtitle("Comparación evolución ventas Microsoft vs Apple")
+ej4
+```
+
+
+Almacena en formato pdf el gráfico resultante en un fichero denominado Ejercicio4.pdf.
+
+```{r}
+ggsave("./results/Ejercicio4.pdf", plot = ej4)
 
 ```
